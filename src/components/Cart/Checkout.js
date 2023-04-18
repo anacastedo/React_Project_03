@@ -47,12 +47,12 @@ const Checkout = (props) => {
             return;
         }
 
-        // props.onConfirm({
-        //     name: enteredName,
-        //     street: enteredStreet,
-        //     postal: enteredPostal,
-        //     city: enteredCity
-        // });
+        props.onConfirm({
+            name: enteredName,
+            street: enteredStreet,
+            postal: enteredPostal,
+            city: enteredCity
+        });
     };
 
         const nameControlClasses = `${classes.control} ${

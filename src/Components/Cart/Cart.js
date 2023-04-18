@@ -22,6 +22,16 @@ const Cart = props =>{
         setIsCheckout(true)
 
     }
+
+    const submitOrderHandler = async (userData) =>{
+        await fetch('https://react-project-03-134f2-default-rtdb.europe-west1.firebasedatabase.app/orders.json', {
+            method: 'POST',
+            body: JSON.stringify({
+                user: userData,
+                orderedItems: cartCtx.items
+            })
+        })
+    }
     const cartItems = <ul className={classes['cart-items']}>
         {cartCtx.items.map((item, id)=>(
             <CartItem
@@ -45,7 +55,7 @@ return <Modal onClose={props.onClose}>
         <span>Total Amount</span>
         <span>{totalAmount}</span>
     </div>
-    {isCheckout && <Checkout onCancel={props.onClose} />}
+    {isCheckout && <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />}
     {!isCheckout && modalActions}
 
 </Modal>
